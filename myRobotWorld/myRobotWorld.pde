@@ -86,20 +86,25 @@ class Objective {
   float widthPerBlock, heightPerBlock;  //Set width,height per block as attribute
 
   Objective(int row, int column, int size, float widthPerBlock, float heightPerBlock) {
-
+    this.row = row;
+    this.column = column;
+    this.size = size;
+    this.widthPerBlock = widthPerBlock;
+    this.heightPerBlock = heightPerBlock;
   }
 
 
   void drawObjective() {
-
+    fill(255, 100, 80); //fill red
+    ellipse(widthPerBlock*row + widthPerBlock/2, heightPerBlock*column + heightPerBlock/2, size, size); //draw circle object
   }
 
   int getRow() {
-    return 0;
+    return row;
   }
 
   int getColumn() {
-    return 0;
+    return column;
   }
 }
 
@@ -118,6 +123,7 @@ class World {
     widthPerBlock = width/row;
 
     myRobot = new Robot(1, 2, 40, widthPerBlock, heightPerBlock);    //instance myRobot at 1,2 size =40 ,and send width,heigh per block
+    myObjective =  new Objective(11, 11, 40, widthPerBlock, heightPerBlock); //instance myObject at 11,11 size =40 ,and send width,heigh per block
   }
 
   void drawLine() { //draw line
@@ -131,6 +137,7 @@ class World {
   }
 
   void drawWorld() {
+    myObjective.drawObjective();    //draw objective
     myRobot.drawRobot();     //draw robot
   }
 
