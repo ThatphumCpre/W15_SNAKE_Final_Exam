@@ -70,6 +70,10 @@ class Robot {
   int getColumn() {
     return column;
   }
+  
+  float getRadian() {
+    return radian;
+  }
 }
 
 class Wall {
@@ -169,9 +173,33 @@ class World {
 
   void updateWorld(){
     if (key == 'w' || key == 'W') {
-      myRobot.move(1);
+      for (int i = 0; i<20; i++) {
+        if (cos(myRobot.radian) == 1 && myRobot.getRow()+1 == myWall[i].getRow() && myRobot.getColumn() == myWall[i].getColumn()) {
+          break;
+        } else if (cos(myRobot.radian) == -1 && myRobot.getRow()-1 == myWall[i].getRow() && myRobot.getColumn() == myWall[i].getColumn()) {
+          break;
+        } else if (sin(myRobot.radian) == 1 && myRobot.getRow() == myWall[i].getRow() && myRobot.getColumn()+1 == myWall[i].getColumn()) {
+          break;
+        } else if (sin(myRobot.radian) == -1 && myRobot.getRow() == myWall[i].getRow() && myRobot.getColumn()-1 == myWall[i].getColumn()) {
+          break;
+        } else if (i == 19) {
+          myRobot.move(1);
+        }
+      }
     } else if (key == 's' || key == 'S') {
-      myRobot.move(-1);
+      for (int i = 0; i<20; i++) {
+        if (cos(myRobot.radian) == 1 && myRobot.getRow()-1 == myWall[i].getRow() && myRobot.getColumn() == myWall[i].getColumn()) {
+          break;
+        } else if (cos(myRobot.radian) == -1 && myRobot.getRow()+1 == myWall[i].getRow() && myRobot.getColumn() == myWall[i].getColumn()) {
+          break;
+        } else if (sin(myRobot.radian) == 1 && myRobot.getRow() == myWall[i].getRow() && myRobot.getColumn()-1 == myWall[i].getColumn()) {
+          break;
+        } else if (sin(myRobot.radian) == -1 && myRobot.getRow() == myWall[i].getRow() && myRobot.getColumn()+1 == myWall[i].getColumn()) {
+          break;
+        } else if (i == 19) {
+          myRobot.move(-1);
+        }
+      }
     } else if (key == 'a' || key == 'A') {
       myRobot.turn(-1);
     } else if (key == 'd' || key == 'D') {
