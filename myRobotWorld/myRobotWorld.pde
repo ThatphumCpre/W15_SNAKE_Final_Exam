@@ -11,7 +11,6 @@ void draw() {
   myRobotWorld.drawWorld();     //Draw all of World
 }
 
-
 class Robot {
   int row, column, size;     //Set row, column, size as attribute
   float heightPerBlock, widthPerBlock, radian;  //Set height,wieght per block and degree as attribute
@@ -65,19 +64,24 @@ class Wall {
 
 
   Wall(int row, int column, int size, float widthPerBlock, float heightPerBlock) {
-
+    this.row = row;
+    this.column = column;
+    this.size = size;
+    this.widthPerBlock = widthPerBlock;
+    this.heightPerBlock = heightPerBlock;
   }
 
   void drawWall() {
-
+    fill(100, 100, 80);
+    rect(widthPerBlock*row+2, heightPerBlock*column+2, widthPerBlock-2, heightPerBlock-2);    //fill the block
   }
 
   int getRow() {
-    return 0;
+    return row;
   }
 
   int getColumn() {
-    return 0;
+    return column;
   }
 }
 
@@ -119,11 +123,16 @@ class World {
   World(int row, int column) {
     this.row = row;
     this.column = column;
-    heightPerBlock = height/column;  //calculate height,width per block
+    heightPerBlock = height/column; //calculate height,width per block
     widthPerBlock = width/row;
 
     myRobot = new Robot(1, 2, 40, widthPerBlock, heightPerBlock);    //instance myRobot at 1,2 size =40 ,and send width,heigh per block
     myObjective =  new Objective(11, 11, 40, widthPerBlock, heightPerBlock); //instance myObject at 11,11 size =40 ,and send width,heigh per block
+    myWall = new Wall[20];  //Initialization Wall array
+    for (int i=0; i<20; i++) {
+      myWall[i] = new Wall((int)random(0, 12), (int)(random(0, 11)), 40, widthPerBlock, heightPerBlock); //random wall position
+    }
+
   }
 
   void drawLine() { //draw line
@@ -137,6 +146,9 @@ class World {
   }
 
   void drawWorld() {
+    for (Wall eachWall : myWall) {
+      eachWall.drawWall();        //draw each wall
+    }
     myObjective.drawObjective();    //draw objective
     myRobot.drawRobot();     //draw robot
   }
