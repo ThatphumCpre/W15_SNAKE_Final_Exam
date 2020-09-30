@@ -11,6 +11,10 @@ void draw() {
   myRobotWorld.drawWorld();     //Draw all of World
 }
 
+void keyReleased(){
+  myRobotWorld.updateWorld();
+}
+
 class Robot {
   int row, column, size;     //Set row, column, size as attribute
   float heightPerBlock, widthPerBlock, radian;  //Set height,wieght per block and degree as attribute
@@ -25,11 +29,18 @@ class Robot {
   }
 
   void move(int args) {    //move method to move row with args
-     if (cos(radian)==1 || cos(radian) == -1 ) {
-       print(row);
+     if (cos(radian) == 1) {
+       //print(row);
        row += args;
-     } else if (sin(radian)==-1 || sin(radian)==1) {
+     } else if (cos(radian) == -1) {
+       //print(row);
+       row -= args;
+     } else if (sin(radian) == 1) {
+       //print(column);
        column += args;
+     } else if (sin(radian) == -1) {
+       //print(column);
+       column -= args;
      }
    }
 
@@ -157,6 +168,15 @@ class World {
   }
 
   void updateWorld(){
+    if (key == 'w' || key == 'W') {
+      myRobot.move(1);
+    } else if (key == 's' || key == 'S') {
+      myRobot.move(-1);
+    } else if (key == 'a' || key == 'A') {
+      myRobot.turn(-1);
+    } else if (key == 'd' || key == 'D') {
+      myRobot.turn(1);
+    }
   }
 
   boolean targetCheck(){
