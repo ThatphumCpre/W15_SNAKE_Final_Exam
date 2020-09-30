@@ -25,14 +25,17 @@ class Robot {
   }
 
   void move(int args) {    //move method to move row with args
-    radian = acos(args);   //calculate new degree  before move
-    row += args;           //move to row with -1,1(backward, forward)
-  }
+     if (cos(radian)==1 || cos(radian) == -1 ) {
+       print(row);
+       row += args;
+     } else if (sin(radian)==-1 || sin(radian)==1) {
+       column += args;
+     }
+   }
 
-  void turn(int args) {   //turn method to turn column with args
-    column += args;       //turn to column with -1,1 (left,right)
-    radian = asin(args);  //calculate new degree
-  }
+   void turn(int args) {   //turn method to turn column with args
+     radian += asin(args);  //calculate new degree
+   }
 
   void drawRobot() {   //draw robot
     fill(255);
