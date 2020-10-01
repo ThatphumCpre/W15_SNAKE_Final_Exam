@@ -182,6 +182,14 @@ class World {
           break;
         } else if (sin(myRobot.radian) == -1 && myRobot.getRow() == myWall[i].getRow() && myRobot.getColumn()-1 == myWall[i].getColumn()) {
           break;
+        } else if (cos(myRobot.radian) == 1 && myRobot.getRow()+1 == row) {
+          break;
+        } else if (cos(myRobot.radian) == -1 && myRobot.getRow()-1 < 0) {
+          break;
+        } else if (sin(myRobot.radian) == 1 && myRobot.getColumn()+1 == column) {
+          break;
+        } else if (sin(myRobot.radian) == -1 && myRobot.getColumn()-1 < 0) {
+          break;
         } else if (i == 19) {
           myRobot.move(1);
         }
@@ -195,6 +203,14 @@ class World {
         } else if (sin(myRobot.radian) == 1 && myRobot.getRow() == myWall[i].getRow() && myRobot.getColumn()-1 == myWall[i].getColumn()) {
           break;
         } else if (sin(myRobot.radian) == -1 && myRobot.getRow() == myWall[i].getRow() && myRobot.getColumn()+1 == myWall[i].getColumn()) {
+          break;
+        } else if (cos(myRobot.radian) == 1 && myRobot.getRow()-1 < 0) {
+          break;
+        } else if (cos(myRobot.radian) == -1 && myRobot.getRow()+1 == row) {
+          break;
+        } else if (sin(myRobot.radian) == 1 && myRobot.getColumn()-1 < 0) {
+          break;
+        } else if (sin(myRobot.radian) == -1 && myRobot.getColumn()+1 == column) {
           break;
         } else if (i == 19) {
           myRobot.move(-1);
